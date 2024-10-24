@@ -7,6 +7,7 @@ package Alghoritms;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import org.checkerframework.checker.units.qual.t;
 
 /**
  *
@@ -21,15 +22,15 @@ public class ParametricEllipse {
           this.y =y;
       }
       
-      public void drawParametricEllipse(int x, int y, int r, Graphics2D g2d, Color color){
-          double circum = 6.28;
-          double a = 0;
-          while(a != circum){
-              x = (int) (r * Math.cos(a));
-              y = (int) (r * Math.cos(a));
-              g2d.draw(new Ellipse2D.Double(x, y, 1, 1));
-              
-          }
+      public void drawParametricEllipse(int x, int y,int x1,int y1, int r, Graphics2D g2d, Color color){
+         double inc = 0.01;
+         double circum = Math.PI * 2;
+         double t;
+         for(t = 0; t <= circum; t += inc){
+          int xf = (int) (r * Math.cos(t));
+          int yf = (int) (r * Math.sin(t));     
           
-      }
+          g2d.draw(new Ellipse2D.Double(x + xf,y + yf,1,1));
+                }
+       }
 }

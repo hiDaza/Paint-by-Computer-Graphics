@@ -50,16 +50,20 @@ public class CanvasController extends JPanel{
                    PixelbyPixelLine drawLine = new PixelbyPixelLine(x1,y1,x,y); 
                    drawLine.drawLine(x1, y1, x, y, g2d, color);
                    g2d.dispose();
+                   break;
             case 3:
                    ParametricLine drawLineParametric = new ParametricLine(x1,y1,x,y); 
                    drawLineParametric.drawParametric(x1, y1, x, y, g2d, color);
                    g2d.dispose();
+                   break;
             case 4:
                    BresenhamLine drawLineBresenham = new BresenhamLine(x1,y1,x,y); 
                    
                    drawLineBresenham.drawBresenhamLine(x1, y1, x, y, g2d, color);
                    g2d.dispose();
+                   break;
             default:
+                break;
                 
         }
     }
@@ -76,13 +80,16 @@ public class CanvasController extends JPanel{
                    RadiusEllipse drawEllipseRadius = new RadiusEllipse(x,y);
                    drawEllipseRadius.drawRadiusEllipse(x,y,Math.toIntExact(Math.round(r)),g2d,color);
                    g2d.dispose();
-            /*case 6:
+                   break;
+            case 6:
                   r = Math.sqrt((x-x1)*(x-x1) + (y-y1)*(y-y1));
                   ParametricEllipse drawEllipseParametric = new ParametricEllipse(x,y);
-                  drawEllipseParametric.drawParametricEllipse(x, y, Math.toIntExact(Math.round(r)), g2d, color);
-                  g2d.dispose(); */
+                  drawEllipseParametric.drawParametricEllipse(x1,y1,x, y, Math.toIntExact(Math.round(r)), g2d, color);
+                  g2d.dispose();
+                  break;
             
             default:
+                break;
  
                   } 
             

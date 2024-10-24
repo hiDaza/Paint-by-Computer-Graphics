@@ -31,10 +31,10 @@ public class RadiusEllipse {
             yc = (int) Math.round(a);
 
             // Desenha os pontos da circunferência nos octantes
-            g2d.draw(new Ellipse2D.Double(x + xc, y + yc, 1, 1));
-            g2d.draw(new Ellipse2D.Double(x + xc, y - yc, 1, 1));
-            g2d.draw(new Ellipse2D.Double(x - xc, y + yc, 1, 1));
-            g2d.draw(new Ellipse2D.Double(x - xc, y - yc, 1, 1));
+            g2d.fill(new Ellipse2D.Double(x + xc, y + yc, 1, 1));
+            g2d.fill(new Ellipse2D.Double(x + xc, y - yc, 1, 1));
+            g2d.fill(new Ellipse2D.Double(x - xc, y + yc, 1, 1));
+            g2d.fill(new Ellipse2D.Double(x - xc, y - yc, 1, 1));
         }
     }
 }
