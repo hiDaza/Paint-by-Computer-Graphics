@@ -12,6 +12,8 @@ import java.awt.geom.Ellipse2D;
  *
  * @author gerson.lucas_unesp
  */
+// sin cos with symetri;
+
 public class RotacionEllipse {
     int x,y;
     
@@ -22,18 +24,19 @@ public class RotacionEllipse {
     }
     
     public void drawRotacionEllipse(int x, int y,double r, int x1, int y1, Graphics2D g2d, Color color){
-        int xc = (int) r;
-        int yc = 0;
+        double xc =  r;
+        double yc = 0;
         
-        double cos = Math.cos(1);
-        double sin = Math.sin(1);
+        double angle = Math.toRadians(1);
+        double cos = Math.cos(angle);
+        double sin = Math.sin(angle);
+       
         
-        for(int i = 0; i <= 360; i++){
-            double tempx = xc * cos - yc * sin;
-            double tempy = x * sin + y * cos;
-            xc = Math.toIntExact((long) tempx);
-            yc = Math.toIntExact((long) tempy);
+        for(int i = 1; i <= 360; i++){         
             g2d.draw(new Ellipse2D.Double(x1 + xc, y1 + yc,1,1));
+            double tempX = xc * cos - yc * sin;
+            yc = xc * sin + yc * cos;
+            xc = tempX;
         }
         
     }

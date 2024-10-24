@@ -226,6 +226,11 @@ public class Interface extends javax.swing.JFrame {
         jMenu5.add(jMenuItem9);
 
         jMenuItem13.setText("Bresenham");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem13);
 
         jMenuBar1.add(jMenu5);
@@ -376,6 +381,10 @@ public class Interface extends javax.swing.JFrame {
                    CanvasController canvasC = new CanvasController();
                    canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
                }
+               if(option == 8){
+                   CanvasController canvasC = new CanvasController();
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+               }
            
     }//GEN-LAST:event_canvas2MouseDragged
 
@@ -420,6 +429,13 @@ public class Interface extends javax.swing.JFrame {
         option = 7;
         canvas.setOpt(option);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        CanvasController canvas = new CanvasController();
+        option = 8;
+        canvas.setOpt(option);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
         
     /**
      * @param args the command line arguments
