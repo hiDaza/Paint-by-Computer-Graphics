@@ -9,6 +9,7 @@ import Alghoritms.ParametricEllipse;
 import Alghoritms.ParametricLine;
 import Alghoritms.PixelbyPixelLine;
 import Alghoritms.RadiusEllipse;
+import Alghoritms.RotacionEllipse;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -84,10 +85,15 @@ public class CanvasController extends JPanel{
             case 6:
                   r = Math.sqrt((x-x1)*(x-x1) + (y-y1)*(y-y1));
                   ParametricEllipse drawEllipseParametric = new ParametricEllipse(x,y);
-                  drawEllipseParametric.drawParametricEllipse(x1,y1,x, y, Math.toIntExact(Math.round(r)), g2d, color);
+                  drawEllipseParametric.drawParametricEllipse(x1, y1, x, y, Math.toIntExact(Math.round(r)), g2d, color);
                   g2d.dispose();
                   break;
-            
+            case 7: 
+                  r = Math.sqrt((x-x1)*(x-x1) + (y-y1)*(y-y1));
+                  RotacionEllipse drawRotacionEllipse = new RotacionEllipse(x,y);
+                  drawRotacionEllipse.drawRotacionEllipse(x1, y1, r, x, y, g2d, color);
+                  g2d.dispose();
+                  break;
             default:
                 break;
  

@@ -98,8 +98,8 @@ public class Interface extends javax.swing.JFrame {
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
-        canvas2.setMaximumSize(new java.awt.Dimension(1280, 720));
-        canvas2.setPreferredSize(new java.awt.Dimension(1280, 720));
+        canvas2.setMaximumSize(new java.awt.Dimension(1366, 728));
+        canvas2.setPreferredSize(new java.awt.Dimension(1366, 728));
         canvas2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 canvas2MousePressed(evt);
@@ -218,6 +218,11 @@ public class Interface extends javax.swing.JFrame {
         jMenu5.add(jMenuItem8);
 
         jMenuItem9.setText("Rotação sen cos com simetria");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem9);
 
         jMenuItem13.setText("Bresenham");
@@ -232,19 +237,19 @@ public class Interface extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5968, 5968, 5968)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 2266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3702, 3702, 3702)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 2068, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(730, 730, 730)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -367,6 +372,10 @@ public class Interface extends javax.swing.JFrame {
                    CanvasController canvasC = new CanvasController();
                    canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
                }
+               if(option == 7){
+                   CanvasController canvasC = new CanvasController();
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+               }
            
     }//GEN-LAST:event_canvas2MouseDragged
 
@@ -404,6 +413,13 @@ public class Interface extends javax.swing.JFrame {
         option = 6;
         canvas.setOpt(option);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        CanvasController canvas = new CanvasController();
+        option = 7;
+        canvas.setOpt(option);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
         
     /**
      * @param args the command line arguments
