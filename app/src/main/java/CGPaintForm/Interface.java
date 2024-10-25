@@ -7,6 +7,7 @@ import Alghoritms.BresenhamLine;
 import Alghoritms.ParametricLine;
 import Alghoritms.PixelbyPixelLine;
 import CGPaintForm.ColorPoint;
+import ColorConverter.ColorTestPanel;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -33,8 +34,8 @@ public class Interface extends javax.swing.JFrame {
         private int x1,y1, x, y; //Coordinates;
    
         private Color color; //colour 
-   
         
+       
         
     
     /**
@@ -42,8 +43,15 @@ public class Interface extends javax.swing.JFrame {
      */
     public Interface() {
         allPaths = new ArrayList<>(25);
-      
+       
+        
         initComponents();
+        jColorChooser1.getSelectionModel().addChangeListener(e -> {
+        color = jColorChooser1.getColor(); // Atualiza a variável color com a cor escolhida
+    });
+        color = Color.BLACK;
+  
+     
     }
 
     /**
@@ -56,12 +64,10 @@ public class Interface extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
         canvas2 = new java.awt.Canvas();
-        canvas1 = new java.awt.Canvas();
+        jColorChooser1 = new javax.swing.JColorChooser();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -72,33 +78,36 @@ public class Interface extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem16 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 51, 51));
+        setBackground(new java.awt.Color(153, 0, 0));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
+
+        jPanel1.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 732, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1280, 720));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
-
+        canvas2.setBackground(new java.awt.Color(255, 242, 252));
+        canvas2.setForeground(new java.awt.Color(255, 255, 0));
         canvas2.setMaximumSize(new java.awt.Dimension(1366, 728));
         canvas2.setPreferredSize(new java.awt.Dimension(1366, 728));
         canvas2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,25 +123,19 @@ public class Interface extends javax.swing.JFrame {
                 canvas2MouseDragged(evt);
             }
         });
-        jLayeredPane1.add(canvas2);
 
-        canvas1.setBackground(new java.awt.Color(255, 255, 0));
-        canvas1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        canvas1.setMaximumSize(new java.awt.Dimension(1280, 720));
-        canvas1.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jLayeredPane1.add(canvas1);
+        jColorChooser1.setBackground(new java.awt.Color(204, 0, 51));
+        jColorChooser1.setForeground(new java.awt.Color(255, 51, 51));
+        jColorChooser1.setColor(new java.awt.Color(0, 0, 0));
+        jColorChooser1.setFocusTraversalPolicyProvider(true);
+        jColorChooser1.setInheritsPopupMenu(true);
+        jColorChooser1.setMaximumSize(new java.awt.Dimension(200, 200));
+        jColorChooser1.setMinimumSize(new java.awt.Dimension(200, 200));
+        jColorChooser1.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jMenu3.setText("Operação Com imagem");
+        jMenu3.setText("Conversor");
 
-        jMenuItem1.setText("Carregar Imagem");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem2.setText("Salvar");
+        jMenuItem2.setText("Conversor HSL RGB");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -198,6 +201,14 @@ public class Interface extends javax.swing.JFrame {
 
         jMenu1.add(jMenu4);
 
+        jMenuItem1.setText("Carregar Imagem");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu5.setText("Desenho de Circunferências usando Pixels");
@@ -244,6 +255,18 @@ public class Interface extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu2.setText("Projecao");
+
+        jMenuItem16.setText("Abrir Projeção");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem16);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,10 +274,14 @@ public class Interface extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 2266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3702, 3702, 3702)
+                .addGap(7916, 7916, 7916)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6340, 6340, 6340))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,15 +289,24 @@ public class Interface extends javax.swing.JFrame {
                 .addGap(730, 730, 730)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jColorChooser1.getAccessibleContext().setAccessibleName("");
+        jColorChooser1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        ColorTestPanel colorTest = new ColorTestPanel();
+        colorTest.createAndShowGUI();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -282,12 +318,7 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-       FileChooser fileChooserPanel = new FileChooser();
-       JFrame fileChooserFrame = new JFrame("Escolha o Arquivo");
-       fileChooserFrame.setSize(600,400);
-       fileChooserFrame.add(fileChooserPanel);
-       fileChooserFrame.setVisible(true);
+       
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -297,9 +328,6 @@ public class Interface extends javax.swing.JFrame {
         canvas.setOpt(option);
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    
-
 
     void OnMouseDown(MouseEvent event) {
         x1 = (int) event.getX();
@@ -321,6 +349,7 @@ public class Interface extends javax.swing.JFrame {
                Graphics g = canvas2.getGraphics();
                //Graphics g = getGraphics();
                g.setColor(color);
+               
                g.fillRect(x1, y1, sizeLine, sizeLine); //change line size
                g.dispose();
                
@@ -456,6 +485,11 @@ public class Interface extends javax.swing.JFrame {
         option = 9;
         canvas.setOpt(option);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        Projecao3D2D projecao = new Projecao3D2D();
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
         
     /**
      * @param args the command line arguments
@@ -493,10 +527,10 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Canvas canvas1;
     private java.awt.Canvas canvas2;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -507,6 +541,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
