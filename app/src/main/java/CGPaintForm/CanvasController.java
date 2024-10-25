@@ -4,6 +4,7 @@
  */
 
 package CGPaintForm;
+import Alghoritms.BresenhamDiffEll;
 import Alghoritms.BresenhamEllipse;
 import Alghoritms.BresenhamLine;
 import Alghoritms.ParametricEllipse;
@@ -101,6 +102,12 @@ public class CanvasController extends JPanel{
                   drawBresenhamEllipse.drawBresenhamEllipse(x1,y1, (int) r, g2d, color);
                   g2d.dispose();
                 break;
+            case 9:
+                  r = Math.sqrt((x-x1)*(x-x1) + (y-y1)*(y-y1));
+                  BresenhamDiffEll drawBresenhamDiffEll = new BresenhamDiffEll();
+                  drawBresenhamDiffEll.drawBresenhamDiff(x1, y1, (int) r, g2d, color);
+                  g2d.dispose();
+                  break;
                  } 
             
    }

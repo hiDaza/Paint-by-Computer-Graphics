@@ -77,6 +77,7 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 51, 51));
@@ -225,13 +226,21 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem9);
 
-        jMenuItem13.setText("Bresenham");
+        jMenuItem13.setText("Bresenham Simetria");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
             }
         });
         jMenu5.add(jMenuItem13);
+
+        jMenuItem14.setText("Bresenham Circunferência");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem14);
 
         jMenuBar1.add(jMenu5);
 
@@ -385,6 +394,10 @@ public class Interface extends javax.swing.JFrame {
                    CanvasController canvasC = new CanvasController();
                    canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
                }
+               if(option == 9){
+                   CanvasController canvasC = new CanvasController();
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+               }
            
     }//GEN-LAST:event_canvas2MouseDragged
 
@@ -436,6 +449,13 @@ public class Interface extends javax.swing.JFrame {
         option = 8;
         canvas.setOpt(option);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        CanvasController canvas = new CanvasController();
+        option = 9;
+        canvas.setOpt(option);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
         
     /**
      * @param args the command line arguments
@@ -486,6 +506,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
