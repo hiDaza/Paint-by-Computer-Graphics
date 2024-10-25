@@ -23,7 +23,7 @@ import javax.swing.JFrame;
  * @author Daza_
  */
 public class Interface extends javax.swing.JFrame {
-        private final static int sizeLine = 1;
+        private int sizeLine;
         private int option;
   
         private List<ColorPoint> currentPath; // for line
@@ -42,8 +42,9 @@ public class Interface extends javax.swing.JFrame {
      * Creates new form Interface
      */
     public Interface() {
+        
         allPaths = new ArrayList<>(25);
-       
+        
         
         initComponents();
         jColorChooser1.getSelectionModel().addChangeListener(e -> {
@@ -51,9 +52,26 @@ public class Interface extends javax.swing.JFrame {
     });
         color = Color.BLACK;
   
-     
-    }
+        jSlider1.addChangeListener(e -> {
+    // Atualiza o text field quando o slider é movido
+    int value = jSlider1.getValue();
+    jTextField1.setText(String.valueOf(value));
+});
 
+        jTextField1.addActionListener(e -> {
+        // Atualiza o slider quando o texto é inserido e Enter é pressionado
+        try {
+            int value = Integer.parseInt(jTextField1.getText());
+            jSlider1.setValue(value); // Certifique-se de que o valor está dentro do intervalo do slider
+        } catch (NumberFormatException ex) {
+            // Lida com o erro, caso o texto não seja um número válido
+            jTextField1.setText(String.valueOf(jSlider1.getValue())); // Reverte para o valor atual do slider
+            
+           }
+    });
+      this.sizeLine = jSlider1.getValue();
+    }
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,14 +81,15 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSlider2 = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
         canvas2 = new java.awt.Canvas();
         jColorChooser1 = new javax.swing.JColorChooser();
+        jSlider1 = new javax.swing.JSlider();
+        jTextField1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -87,6 +106,8 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
@@ -106,7 +127,7 @@ public class Interface extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        canvas2.setBackground(new java.awt.Color(255, 242, 252));
+        canvas2.setBackground(new java.awt.Color(228, 231, 231));
         canvas2.setForeground(new java.awt.Color(255, 255, 0));
         canvas2.setMaximumSize(new java.awt.Dimension(1366, 728));
         canvas2.setPreferredSize(new java.awt.Dimension(1366, 728));
@@ -133,6 +154,12 @@ public class Interface extends javax.swing.JFrame {
         jColorChooser1.setMinimumSize(new java.awt.Dimension(200, 200));
         jColorChooser1.setPreferredSize(new java.awt.Dimension(200, 200));
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jMenu3.setText("Conversor");
 
         jMenuItem2.setText("Conversor HSL RGB");
@@ -142,21 +169,6 @@ public class Interface extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem2);
-
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem3);
-
-        jMenuItem4.setText("Sair");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
 
@@ -255,7 +267,7 @@ public class Interface extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu2.setText("Projecao");
+        jMenu2.setText("Projeção");
 
         jMenuItem16.setText("Abrir Projeção");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +278,18 @@ public class Interface extends javax.swing.JFrame {
         jMenu2.add(jMenuItem16);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu6.setText("Sair");
+
+        jMenuItem4.setText("Sair");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -278,9 +302,14 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, 1366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6340, 6340, 6340))
         );
         layout.setVerticalGroup(
@@ -290,9 +319,13 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jColorChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -308,10 +341,6 @@ public class Interface extends javax.swing.JFrame {
         ColorTestPanel colorTest = new ColorTestPanel();
         colorTest.createAndShowGUI();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         dispose();
@@ -343,6 +372,7 @@ public class Interface extends javax.swing.JFrame {
     
     private void canvas2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas2MousePressed
         // TODO add your handling code here:
+            sizeLine = jSlider1.getValue();
             currentPath = new ArrayList<>();
                x1 = evt.getX();
                y1 = evt.getY();
@@ -368,6 +398,7 @@ public class Interface extends javax.swing.JFrame {
 
     private void canvas2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas2MouseDragged
         // TODO add your handling code here:
+               sizeLine = jSlider1.getValue();
                x = evt.getX();
                y = evt.getY();
                
@@ -394,38 +425,38 @@ public class Interface extends javax.swing.JFrame {
                if(option == 2){
                   CanvasController canvasC = new CanvasController();
                   
-                  canvasC.factoryLine(option, x, y, x1, y1, g2d, color,canvas2);
+                  canvasC.factoryLine(option, x, y, x1, y1, g2d, color,canvas2,sizeLine);
                }
                if(option == 3){
                   CanvasController canvasC = new CanvasController();
                   
-                  canvasC.factoryLine(option, x, y, x1, y1, g2d, color,canvas2);           
+                  canvasC.factoryLine(option, x, y, x1, y1, g2d, color,canvas2,sizeLine);           
                }
                if(option == 4){               
                   CanvasController canvasC = new CanvasController();
                   
-                  canvasC.factoryLine(option, x, y, x1, y1, g2d, color,canvas2);
+                  canvasC.factoryLine(option, x, y, x1, y1, g2d, color,canvas2,sizeLine);
                }
                //5,6 ELLIPSE FUNCTIONS
                if(option == 5){
                    CanvasController canvasC = new CanvasController();
-                   canvasC.factoryCircum(option,x,y, x1, y1, g2d, color, canvas2);
+                   canvasC.factoryCircum(option,x,y, x1, y1, g2d, color, canvas2,sizeLine);
                }
                if(option == 6){
                    CanvasController canvasC = new CanvasController();
-                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2,sizeLine);
                }
                if(option == 7){
                    CanvasController canvasC = new CanvasController();
-                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2,sizeLine);
                }
                if(option == 8){
                    CanvasController canvasC = new CanvasController();
-                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2,sizeLine);
                }
                if(option == 9){
                    CanvasController canvasC = new CanvasController();
-                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2);
+                   canvasC.factoryCircum(option, x, y, x1, y1, g2d, color, canvas2,sizeLine);
                }
            
     }//GEN-LAST:event_canvas2MouseDragged
@@ -490,6 +521,12 @@ public class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         Projecao3D2D projecao = new Projecao3D2D();
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setText(String.valueOf(jSlider1.getValue()));
+        System.out.println("Valor do JSlider: " + jSlider1.getValue());
+    }//GEN-LAST:event_jTextField1ActionPerformed
         
     /**
      * @param args the command line arguments
@@ -534,6 +571,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -543,7 +581,6 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -551,5 +588,8 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,7 +26,6 @@ import javax.swing.JPanel;
  */
 public class CanvasController extends JPanel{
   
-   private final static int sizeLine =  1;
    private int opt;
    private List<ColorPoint> currentPath; // for line
    //ALL PATHS
@@ -44,7 +43,7 @@ public class CanvasController extends JPanel{
     }
     
    
-    public void factoryLine(int option, int x, int y, int x1, int y1, Graphics2D g2d, Color color,Canvas canvas2){
+    public void factoryLine(int option, int x, int y, int x1, int y1, Graphics2D g2d, Color color,Canvas canvas2, int sizeLine){
                   g2d.setStroke(new BasicStroke(sizeLine));  
                   Graphics2D g = (Graphics2D) canvas2.getGraphics();
                   g.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
@@ -71,7 +70,7 @@ public class CanvasController extends JPanel{
         }
     }
     
-   public void factoryCircum(int option, int x, int y, int x1, int y1,Graphics2D g2d, Color color, Canvas canvas2){
+   public void factoryCircum(int option, int x, int y, int x1, int y1,Graphics2D g2d, Color color, Canvas canvas2,int sizeLine){
                   g2d.setStroke(new BasicStroke(sizeLine));  
                   Graphics2D g = (Graphics2D) canvas2.getGraphics();
                   g.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
